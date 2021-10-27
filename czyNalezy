@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+bool czyNalezy(std::vector<int> tab, int el)
+{
+    for(int i=0; i < tab.size(); i++)
+    {
+        if(el == tab[i]){
+            return true;
+        }
+    }
+    return false;
+}
+
+
+int main()
+{
+    std::vector<int> tab = {1, 10, 30};
+    int a=11;
+    bool wynik = czyNalezy(tab, a);
+    if(wynik == true){
+        std::cout << "Nalezy do tablicy";
+    } else {
+        std::cout << "Nie nalezy do tablicy";
+    }
+}
