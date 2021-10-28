@@ -1,0 +1,77 @@
+#include "pch.h"
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void wypisz(int w)
+{
+	std::cout << w << "\n";
+}
+void wypisz(std::vector<int> tab)
+{
+	for (int i = 0; i < tab.size(); i++)
+	{
+		std::cout << tab[i] << "\n";
+	}
+}
+
+int suma(int dod1, int dod2)
+{
+	return dod1 + dod2;
+}
+
+bool czyNalezy(std::vector<int> tab, int el)
+{
+	for (int i = 0; i < tab.size(); i++)
+	{
+		if (el == tab[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool czyZawiera(vector<int> tab, vector<int> podzbior)
+{
+	for (int i = 0; i < podzbior.size(); i++)
+	{
+		if (!czyNalezy(tab, podzbior[i])) 
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+int main()
+{
+	int a = 3;
+	int b = 10;
+	std::vector<int> tab = { 1, 10, 30 };
+	wypisz(a);
+	wypisz(suma(5, 2));
+	wypisz(tab);
+	bool wynik = czyNalezy(tab, b);
+	if (wynik == true)
+	{
+		std::cout << "Nalezy";
+	}
+	else 
+	{
+		std::cout << "Nie nalezy";
+	}
+	std::cout << "\n";
+	std::cout << "\n" << "========================" << "\n";
+	vector<int> podzbior = { 2, 11 };
+	bool wynikzawiera = czyZawiera(tab, podzbior);
+	if (wynikzawiera == true)
+	{
+		std::cout << "Zawiera";
+	}
+	else
+	{
+		std::cout << "Nie zawiera";
+	}
+}
