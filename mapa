@@ -121,6 +121,32 @@ map<int, int> czestoscmap(vector<int> tab)
 	return wynik;
 }
 
+bool palindrom(vector<int>tab) 
+{
+	int koniec=tab.size()-1;
+	for (int i = 0; i < tab.size() / 2; i++) 
+	{
+		if (tab[i] != tab[koniec - i]) 
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+vector<int> podzielnetrzy(vector<int>tab) 
+{
+	vector<int>wynik;
+	for (int i = 0; i < tab.size(); i++)
+	{
+		if (tab[i] % 3 == 0) 
+		{
+			wynik.push_back(tab[i]);
+		}
+	}
+	return wynik;
+}
+
 int main()
 {
 	wypisz(3);
@@ -138,5 +164,7 @@ int main()
 	{
 		cout << "nalezy";
 	}
+	vector<int>tab2 = {3, 1 ,9,  5, 6};
+	wypisz(podzielnetrzy(tab2));
 
 }
