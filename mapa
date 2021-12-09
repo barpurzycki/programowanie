@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <ctime>
 
 using namespace std;
 
@@ -147,7 +148,7 @@ vector<int> podzielnetrzy(vector<int>tab)
 	return wynik;
 }
 
-vector<int> losowe(int ile) 
+vector<int> generuj(int ile) 
 {
 	srand(time(NULL));
 	vector<int> tab;
