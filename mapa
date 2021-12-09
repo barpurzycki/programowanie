@@ -148,14 +148,13 @@ vector<int> podzielnetrzy(vector<int>tab)
 	return wynik;
 }
 
-vector<int> generuj(int ile) 
+vector<int> generuj(int ile, int max=50, int min=0) 
 {
 	srand(time(NULL));
 	vector<int> tab;
 	for (int i = 0; i < ile; i++) 
 	{
-		int los = rand() % 100;
-		tab.push_back(los);
+		tab.push_back(rand()%(max-min)+min);
 	}
 	return tab;
 }
