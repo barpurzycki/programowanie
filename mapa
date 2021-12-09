@@ -147,6 +147,18 @@ vector<int> podzielnetrzy(vector<int>tab)
 	return wynik;
 }
 
+vector<int> losowe(int ile) 
+{
+	srand(time(NULL));
+	vector<int> tab;
+	for (int i = 0; i < ile; i++) 
+	{
+		int los = rand() % 100;
+		tab.push_back(los);
+	}
+	return tab;
+}
+
 int main()
 {
 	wypisz(3);
