@@ -6,33 +6,46 @@
 
 using namespace std;
 
-void wypisz(int w)
+void wypisz(int w) 
 {
-	cout << w << "\n";
+	cout << w << endl;
 }
 
-void wypisz(vector<int> tab)
+void wypisz(vector<int>tab)
 {
-	for (int i = 0; i < tab.size(); i++)
+	for (int i = 0; i < tab.size(); i++) 
 	{
-		cout << tab[i] << " ";
+		cout << tab[i] << " ";;
 	}
 	cout << "\n";
 }
 
 void wypisz(map<int, int>m)
 {
-	for(auto item : m)
+	for (auto item : m)
 	{
 		cout << item.first << " " << item.second << endl;
 	}
 }
 
-bool czyNalezy(vector<int> tab, int el)
+int min(vector<int>tab) 
+{
+	int min = tab[0];
+	for (int i = 0; i < tab.size(); i++) 
+	{
+		if (min > tab[i]) 
+		{
+			min = tab[i];
+		}
+	}
+	return min;
+}
+
+bool czyNalezy(vector<int>tab, int el)
 {
 	for (int i = 0; i < tab.size(); i++)
 	{
-		if (el == tab[i])
+		if (el == tab[i]) 
 		{
 			return true;
 		}
@@ -40,19 +53,7 @@ bool czyNalezy(vector<int> tab, int el)
 	return false;
 }
 
-bool czyNalezyKlucz(map<int, int> m, int klucz)
-{
-	for (auto item : m) 
-	{
-		if (item.first == klucz) 
-		{
-			return true;
-		}
-	}
-
-}
-
-bool czyZawiera(vector <int> tab, vector<int> podzb)
+bool czyZawiera(vector<int>tab, vector<int>podzb)
 {
 	for (int i = 0; i < podzb.size(); i++)
 	{
@@ -64,23 +65,10 @@ bool czyZawiera(vector <int> tab, vector<int> podzb)
 	return true;
 }
 
-int min(vector<int> tab)
+vector<int>unikalnosc(vector<int>tab) 
 {
-	int min = tab[0];
-	for (int i = 0; i < tab.size(); i++)
-	{
-		if (min > tab[i])
-		{
-			min = tab[i];
-		}
-	}
-	return min;
-}
-
-vector<int> unikalnosc(vector<int> tab)
-{
-	vector<int> wynik;
-	for (int i = 0; tab.size(); i++)
+	vector<int>wynik;
+	for (int i=0; i < tab.size(); i++) 
 	{
 		if (!czyNalezy(wynik, tab[i]))
 		{
@@ -90,35 +78,12 @@ vector<int> unikalnosc(vector<int> tab)
 	return wynik;
 }
 
-vector<vector<int>> czestosc(vector<int> tab)
-{
-	vector<vector<int>> wynik;
-	vector<int> jakiel = unikalnosc(tab);
-	vector<int> iler;
-	for (int i = 0; i < jakiel.size(); i++)
-	{
-		int el = jakiel[i];
-		int licznik = 0;
-		for (int j = 0; j < tab.size(); j++)
-		{
-			if (el == tab[j])
-			{
-				licznik++;
-			}
-		}
-		iler.push_back(licznik);
-	}
-	wynik.push_back(jakiel);
-	wynik.push_back(iler);
-	return wynik;
-}
-
-map<int, int> czestoscmap(vector<int> tab)
+/*map<int, int> czestosc(vector<int>tab) 
 {
 	map<int, int>wynik;
-	for (int i = 0; i < tab.size(); i++)
+	for (int i=0; i < tab.size(); i++) 
 	{
-		if (!czyNalezyKlucz(wynik, tab[i])) 
+		if (!czyNalezyKlucz(wynik, tab[i]))
 		{
 			wynik.insert({ tab[i], 1 });
 		}
@@ -129,26 +94,25 @@ map<int, int> czestoscmap(vector<int> tab)
 	}
 	return wynik;
 }
-
-bool palindrom(vector<int>tab) 
+*/ 
+bool czyNalezyKlucz(map<int, int>m, int klucz) 
 {
-	int koniec=tab.size()-1;
-	for (int i = 0; i < tab.size() / 2; i++) 
+	for (auto item : m) 
 	{
-		if (tab[i] != tab[koniec - i]) 
+		if (item.first == klucz) 
 		{
-			return false;
+			return true;
 		}
 	}
-	return true;
+	return false;
 }
 
-vector<int> podzielnetrzy(vector<int>tab) 
+vector<int>podzielnosc(vector<int>tab, int dzielnik, int reszta=0) 
 {
 	vector<int>wynik;
-	for (int i = 0; i < tab.size(); i++)
+	for (int i = 0; i < tab.size(); i++) 
 	{
-		if (tab[i] % 3 == 0) 
+		if (tab[i] % dzielnik == reszta) 
 		{
 			wynik.push_back(tab[i]);
 		}
@@ -158,33 +122,39 @@ vector<int> podzielnetrzy(vector<int>tab)
 
 vector<int> generuj(int ile, int max=50, int min=0) 
 {
-	srand(time(NULL));
-	vector<int> tab;
+	
+	vector<int>wynik;
 	for (int i = 0; i < ile; i++) 
 	{
-		tab.push_back(rand()%(max-min)+min);
+		wynik.push_back(rand() % (max - min) + min);
 	}
-	return tab;
+	return wynik;
 }
 
 int main()
 {
-	wypisz(3);
-	vector<int> tab = { 1, 3, 5, 3, 7, 3, 7, 1, 2, 5 };
-	vector<int> podz = { 1, 3 };
-	wypisz(tab);
-	bool wynik = czyNalezy(tab, 3);
-	bool wynikczyzaw = czyZawiera(tab, podz);
-	map<int, int> m;
-	m.insert({ 8, 5 });
-	m.insert({ 4, 2 });
-	m.insert({ -3, 1 });
-	bool wynikczynalklucz = czyNalezyKlucz(m, 8);
-	if (wynikczynalklucz = true) 
-	{
-		cout << "nalezy";
-	}
-	vector<int>tab2 = {3, 1 ,9,  5, 6};
-	wypisz(podzielnetrzy(tab2));
+	srand(time(NULL));
+	// wypisz(3);
+	vector<int>tab = { 1, 3, 5 };
+	// wypisz(tab);
+	// wypisz(podzielnosc(tab, 3));
+	map<int, int>m;
+	// int a;
+	// cin >> a;
+	// <int>losowy = generuj(a);
+	// wypisz(losowy);
+	// losowy = podzielnosc(losowy, 7);
+	// wypisz(losowy);
 
+	int ile;
+	cin >> ile;
+
+	for (int i = 1; i < ile; i=i+2) 
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			cout << "*";
+		}
+		cout << "\n";
+	}
 }
