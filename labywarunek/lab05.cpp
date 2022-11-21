@@ -21,18 +21,6 @@ int suma(vector<int>tab)
     return wynik;
 }
 
-bool czyNalezy(vector<int>tab, int el)
-{
-    for (int i = 0; i < tab.size(); i++)
-    {
-        if (tab[i] == el)
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
 int index(vector<int>tab, int el)
 {
     for (int i = 0; i < tab.size(); i++)
@@ -43,6 +31,11 @@ int index(vector<int>tab, int el)
         }
     }
     return -1;
+}
+
+bool czyNalezy(vector<int>tab, int el)
+{
+    return index(a, tab) > -1;
 }
 
 int abs(int a)
@@ -65,15 +58,17 @@ int sumaodl(vector<int>tab, int nr)
 
 int najlepszydom(vector<int>tab)
 {
-    int wynik = sumaodl(tab, tab[0]);
+    int wynik = tab[0];
+    int odleglosc = sumaodl(tab, tab[0]);
     for (int i = 0; i < tab.size(); i++)
     {
-        if (wynik > sumaodl(tab, tab[i]))
+        if (odleglosc > sumaodl(tab, tab[i]))
         {
-            wynik = sumaodl(tab, tab[i]);
+            odleglosc = sumaodl(tab, tab[i]);
+            wynik = tab[i];
         }
-        return i;
     }
+    return wynik;
 }
 
 
