@@ -120,6 +120,7 @@ vector<int>generuj(int ile, int max, int min = 0)
 
 int main()
 {
+    srand(time(NULL));
     vector<int>tab = { 1, 2, 3, 4, 6, 12, 18, 19, 21 };
     vector<int>tab2 = { 1, 2};
     cout << "================" << endl;
