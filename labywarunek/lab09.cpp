@@ -171,4 +171,7 @@ int main()
     wypisz(generuj(5, 10));
     cout << "==========" << endl;
     wypiszmapa(czestosc(tab3));
+
+
+    //Sprawdzanie
 }
